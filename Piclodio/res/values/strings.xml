@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Piclodio</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="hello_world">Hello world!</string>
+	<string name="seturl">Saisir l\'URL de l\'application web</string>
+	<string name="valider">Valider</string>
+	<string name="annuler">Annuler</string>
+	<string name="setURL">URL de Piclodio</string>
+</resources>

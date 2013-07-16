@@ -1,17 +1,16 @@
 package fr.mespotegeek.piclodio;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.app.DialogFragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -41,6 +40,7 @@ public class MainActivity extends Activity {
        
     }
 	
+	@SuppressLint("SetJavaScriptEnabled")
 	public void showWebView(String url){
 		 // chargement de la vue web
         WebView myWebView = (WebView) findViewById(R.id.webview);
@@ -54,7 +54,9 @@ public class MainActivity extends Activity {
         
 	}
 
+	//*****************
 	// le menu
+	//*****************
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -62,12 +64,14 @@ public class MainActivity extends Activity {
         return true;
     } 
     
-    //capture action du menu
+    /**
+     * Menu capturing
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_settings:
-                // ouverture de la boite de dialogue de configuration
+                // show the dialogFragment
             	showSettings();
                 return true;
             
@@ -76,30 +80,39 @@ public class MainActivity extends Activity {
         }
     }
 
+    /**
+     * Show the dialoguFragment
+     */
 	private void showSettings() {
 		DialogFragment newFragment = MyAlertDialogFragment.newInstance( R.string.setURL);
         newFragment.show(getFragmentManager(), "dialog");
 		
 	}
 	
-	//******************************
-	// paramettrage e l'url de piclodio sur le rasp
-	//******************************
+	/**
+	 * Set the url for the webview
+	 * @param url
+	 */
 	public void doPositiveClick(String url) {
         urlmanager.setUrl(url);
         showWebView(url);
         Log.i("FragmentAlertDialog", url);
     }
     
+	/**
+	 * Do nothing. Just close
+	 */
     public void doNegativeClick() {
         // Do stuff here.
         Log.i("FragmentAlertDialog", "Negative click!");
     }
     
 	
-    //********************************
-    // Dialog to change URL of piclodio on the Rpi
-    //********************************
+    /**
+     * The DialogFragment Class to ask for the Rpi URL
+     * @author Nico
+     *
+     */
     public static class MyAlertDialogFragment extends DialogFragment {
 
 		public static MyAlertDialogFragment newInstance(int title) {

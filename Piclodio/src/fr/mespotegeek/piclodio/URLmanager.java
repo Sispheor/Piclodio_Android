@@ -13,9 +13,9 @@ import android.os.Environment;
 import android.util.Log;
 
 /**
- * Gestion de l'URL de piclodio
- * - Enregistre l'url saisie dans un fichier
- * - Li le fichier
+ * 		URL Manager
+ * - Save the URL string into a file
+ * - Read the file
  * @author Nico
  *
  */
@@ -43,6 +43,10 @@ public class URLmanager {
 		return url;
 	}
 
+	/**
+	 * Save into a file the Rpi url of Piclodio web app
+	 * @param url The raspberry pi url of Piclodio on the web server
+	 */
 	public void setUrl(String url) {
 		this.url = url;		
 		try {
@@ -68,7 +72,7 @@ public class URLmanager {
 	// Methodes
 	//**********************
 	/**
-	 *  creation du dossier pour le programme si non existant
+	 *  Create the backup folder if not exist
 	 */
 	public void createDirIfNotExists() {
 		
@@ -82,7 +86,7 @@ public class URLmanager {
 		}
 	}
 	/**
-	 * Creation du fichier de sauvegarde des URL si il n'existe pas
+	 * Create the backup file if not exist in the folder
 	 */
 	public void createFileIfNotExists(){
 		// si le fichier existe deja on le creer pas
@@ -97,6 +101,9 @@ public class URLmanager {
 		
 	}
 	
+	/**
+	 * Try to load the URL from the backup file if exist. Set "" by default
+	 */
 	public void loadURLinFileIfExist(){
 		String loadedURL="";
 		if ( fichierURL.exists() ) {
@@ -123,10 +130,5 @@ public class URLmanager {
 		this.url=loadedURL;
 		
 	}
-	
-	
-	
-	
-	
 
 }
